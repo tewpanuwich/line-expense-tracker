@@ -174,7 +174,7 @@ Output ONLY the following JSON structure without any conversational text:
         generationConfig: {
           responseMimeType: "application/json", // บังคับคืนค่าเป็น Structured JSON
           temperature: 0.1, // ปรับให้ต่ำมาก เพื่อลดความสร้างสรรค์ เน้นความถูกต้องตามความจริง
-          thinkingConfig: { thinkingBudget: 0 }, // จำกัด (ไม่ปิด) โหมด thinking ให้พอสำหรับกฎที่ต้องใช้เหตุผล เช่น การรวมส่วนลดเข้ากับราคาสินค้า แต่ไม่ปล่อยให้ใช้เวลาแบบไม่จำกัดเหมือนค่าเริ่มต้น
+          thinkingConfig: { thinkingBudget: 2048 }, // ปิด thinking (0) ทำให้โมเดลอ่านส่วนลดไม่ออกเลย (คืน discount เป็น 0 ทุกครั้ง) จึงต้องเปิด thinking แบบจำกัดไว้เพื่อให้ตรวจจับส่วนลดได้ แลกกับเวลาตอบที่ไม่คงที่
         },
       }),
     });
