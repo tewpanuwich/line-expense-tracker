@@ -1,26 +1,45 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf7f2;
+  --foreground: #221e18;
+  --muted: #8a8072;
+  --card: #ffffff;
+  --primary: #c15f3c;
+
+  --cat-food: oklch(0.6 0.13 40);
+  --cat-transport: oklch(0.58 0.09 250);
+  --cat-household: oklch(0.6 0.09 150);
+  --cat-entertainment: oklch(0.58 0.1 330);
+  --cat-health: oklch(0.6 0.13 15);
+  --cat-bills: oklch(0.65 0.1 80);
+  --cat-education: oklch(0.6 0.1 200);
+  --cat-shopping: oklch(0.62 0.12 300);
+  --cat-other: oklch(0.65 0.02 90);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-cat-food: var(--cat-food);
+  --color-cat-transport: var(--cat-transport);
+  --color-cat-household: var(--cat-household);
+  --color-cat-entertainment: var(--cat-entertainment);
+  --color-cat-health: var(--cat-health);
+  --color-cat-bills: var(--cat-bills);
+  --color-cat-education: var(--cat-education);
+  --color-cat-shopping: var(--cat-shopping);
+  --color-cat-other: var(--cat-other);
+
+  --font-sans: var(--font-anuphan);
+  --font-display: var(--font-space-grotesk);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

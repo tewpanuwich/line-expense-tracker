@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# family-expense-tracker
 
-## Getting Started
+เว็บแอปบันทึกรายจ่ายในครอบครัว — Next.js (App Router) + Supabase + PIN auth แบบ custom
 
-First, run the development server:
+## Setup
+
+1. สร้างโปรเจกต์ Supabase แล้วรัน SQL ตามลำดับ:
+   - [`supabase/schema.sql`](./supabase/schema.sql) — สร้างตาราง
+   - [`supabase/seed.sql`](./supabase/seed.sql) — ใส่หมวดหมู่เริ่มต้น
+2. คัดลอก `.env.local.example` เป็น `.env.local` แล้วใส่ค่าจาก Supabase project settings (Project URL, anon key, service role key) และตั้ง `SESSION_SECRET` เป็นสตริงสุ่มยาวๆ
+3. ติดตั้ง dependencies และรัน dev server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+เปิด [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## หมายเหตุด้านความปลอดภัย
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ระบบ auth เป็น PIN แบบ custom (ไม่ใช้ Supabase Auth) ดังนั้นทุก query จะเรียกผ่าน service role key
+ฝั่ง server เท่านั้น (`src/lib/supabase/server.ts`) ห้าม import ไฟล์นี้จาก Client Component
+ตารางทั้งหมดเปิด RLS ไว้โดยไม่มี policy เพื่อบล็อกการเข้าถึงตรงจาก anon/public key
